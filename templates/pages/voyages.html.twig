@@ -1,4 +1,37 @@
 {% extends "basefront.html.twig" %}
 {% block body %}
-<h1>Page de voyages<h1>
+    <table class="table table-striped table-hover"> 
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Ville</td>
+                <th scope="col">Pays</td>
+                <th scope="col">Note</td>
+                <th scope="col">Date</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visite in visites %}
+                <tr>
+                    <td>
+                        <h5 class="text-primary">
+                            <a href="#">{{ visite.ville }}</a>
+                        </h5>
+                    </td>
+                    <td>
+                        {{ visite.pays }}
+                    </td>
+                    <!-- si la note >= 10, en vert. Sinon, en rouge-->
+                    {% if visite.note >= 10 %}
+                        <td class="text-success">{{ visite.note }}/20</td>
+                    {% else %}
+                        <td class="text-danger">{{ visite.note }}/20</td>
+                    {% endif %}
+                    <td>
+                        {{ visite.getDatecreationString() }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}
