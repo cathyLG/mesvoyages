@@ -26,9 +26,32 @@ class VisiteRepository extends ServiceEntityRepository {
      */
     public function findAllOrderBy($champ, $ordre): array {
         return $this->createQueryBuilder('v')
-        ->orderBy('v.'.$champ, $ordre)
-        ->getQuery()
-        ->getResult();
+                        ->orderBy('v.' . $champ, $ordre)
+                        ->getQuery()
+                        ->getResult();
+    }
+
+    /**
+     * filtrer les enregistrement par un champs
+     * @param type $champ
+     * @param type $valeur
+     * @return Visite[]
+     */
+    public function findByEqualValeu($champ, $valeur): array {
+        // si valeur vide, réafficher tous les enregistrements en fonction de chmpas ASC
+        if ($valeur == '') {
+            return $this->createQueryBuilder('v')
+                            ->orderBy('v.' . $champ, 'ASC')
+                            ->getQuery()
+                            ->getResult();
+        } else {
+            return $this->createQueryBuilder('v')
+                            ->andWhere('v.' . $champ . ' = :val')
+                            ->setParameter('val', $valeur)
+                            ->orderBy('v.datecreation', 'DESC')
+                            ->getQuery()
+                            ->getResult();
+        }
     }
 
     // /**
