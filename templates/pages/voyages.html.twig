@@ -44,7 +44,8 @@
                 <tr>
                     <td>
                         <h5 class="text-primary">
-                            <a href="#">{{ visite.ville }}</a>
+                            <!-- lien pour aller voir le détail d'une visite-->
+                            <a href="{{ path('voyages.showone', {id:visite.id}) }}">{{ visite.ville }}</a>
                         </h5>
                     </td>
                     <td>
