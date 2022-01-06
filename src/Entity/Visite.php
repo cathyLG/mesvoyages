@@ -195,7 +195,7 @@ class Visite {
         return $this->imageName;
     }
 
-    function setImageFile(?File $imageFile) {
+    function setImageFile(?File $imageFile): self {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile) {
             $this->updated_at = new \DateTime('now');
@@ -203,7 +203,7 @@ class Visite {
         return $this;
     }
 
-    function setImageName(?string $imageName) {
+    function setImageName(?string $imageName): self {
         $this->imageName = $imageName;
         return $this;
     }
